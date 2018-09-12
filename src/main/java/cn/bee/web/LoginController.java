@@ -1,5 +1,10 @@
 package cn.bee.web;
 
+import cn.bee.User;
+import cn.bee.service.UserValidateService;
+import cn.bee.utils.JSONUtil;
+import cn.bee.utils.Md5Encrypt;
+import cn.bee.utils.ResponseResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -8,6 +13,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @author answer
@@ -15,29 +25,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class LoginController {
+    @Resource
+    private UserValidateService userValidateService;
 
     @RequestMapping("/validate")
+    @ResponseBody
     public String login(Model model, String username, String password) {
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        ResponseResult responseResult = new ResponseResult();
+        User user = userValidateService.findByUsername(username);
+        if (user == null) {
+            responseResult.setMessage("用户不存在");
+            responseResult.setStatus("400");
+            return JSONUtil.object2String(responseResult);
+        }
+        String uuid = user.getUuid();
+        String pass = null;
+        try {
+            pass = Md5Encrypt.EncoderByMd5(uuid, password);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        UsernamePasswordToken token = new UsernamePasswordToken(username, pass);
         // shiro登陆验证
         try {
             SecurityUtils.getSubject().login(token);
+            //设置登录超时时长 2小时
+            SecurityUtils.getSubject().getSession().setTimeout(7200000);
+            responseResult.setMessage("登录成功");
+            responseResult.setStatus("200");
         } catch (UnknownAccountException ex) {
-            model.addAttribute("message", "用户不存在");
-            return "fail";
+            responseResult.setMessage("用户不存在");
+            responseResult.setStatus("400");
         } catch (IncorrectCredentialsException ex) {
-            model.addAttribute("message", "密码错误");
-            return "fail";
+            responseResult.setMessage("密码错误");
+            responseResult.setStatus("400");
         } catch (AuthenticationException ex) {
-            model.addAttribute("message", "系统异常");
+            responseResult.setMessage("系统异常");
+            responseResult.setStatus("400");
             ex.printStackTrace();
-            // 自定义报错信息
-            return "fail";
         } catch (Exception ex) {
             ex.printStackTrace();
-            return "fail";
+            responseResult.setMessage("系统异常");
+            responseResult.setStatus("400");
         }
-        model.addAttribute("message", "登陆成功");
-        return "success";
+        return JSONUtil.object2String(responseResult);
     }
 }

@@ -45,4 +45,5 @@
     </bean>
 
     <import resource="dubbo.xml"/>
+    <import resource="spring-shiro.xml"/>
 </beans>

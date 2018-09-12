@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
           content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+    <title>Bee</title>
     <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive,"/>
-    <title>Kode</title>
-
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/bee.jpg" type="image/x-icon">
     <!-- ========== Css Files ========== -->
     <link href="${pageContext.request.contextPath}/css/root.css" rel="stylesheet">
     <style type="text/css">
@@ -20,26 +21,30 @@
 <body>
 
 <div class="login-form">
-    <form action="index.html">
+    <form>
         <div class="top">
-            <img src="${pageContext.request.contextPath}/img/kode-icon.png" alt="icon" class="icon">
+            <img src="${pageContext.request.contextPath}/img/bee.jpg" alt="icon" class="icon">
             <h4>Admin</h4>
         </div>
         <div class="form-area">
             <div class="group">
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Username" id="username">
                 <i class="fa fa-user"></i>
             </div>
             <div class="group">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" id="password">
                 <i class="fa fa-key"></i>
             </div>
-            <button type="submit" class="btn btn-default btn-block">LOGIN</button>
+            <button type="submit" id="commit" class="btn btn-default btn-block">LOGIN</button>
         </div>
     </form>
     <div class="footer-links row">
     </div>
 </div>
+
+
+<%@include file="../common/js.jsp" %>
+<script src="${pageContext.request.contextPath}/js/bee/login/login.js"></script>
 
 </body>
 </html>

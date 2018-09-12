@@ -16,7 +16,7 @@ public class DubboTest extends BaseTest {
 
     @Test
     public void testDubbo() {
-        User user = userService.findUserInfo();
+        User user = userService.findUserByName("admin");
         System.out.println(user);
     }
 }

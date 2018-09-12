@@ -7,6 +7,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- 装配 securityManager -->
         <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login"/>
 
         <property name="filterChainDefinitions">
             <value>
@@ -14,8 +15,8 @@
                 /jsp/success.jsp = authc
                 /jsp/fail.jsp = anon
 
-                /ueditor = authc
                 /login = anon
+                /validate = anon
 
             </value>
         </property>
@@ -29,7 +30,6 @@
     <!-- 配置 Shiro 的 SecurityManager Bean. -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
-        <property name="sessionMode" value="native">
-        </property>
+        <property name="sessionMode" value="native"/>
     </bean>
 </beans>

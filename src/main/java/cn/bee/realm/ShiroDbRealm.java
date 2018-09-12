@@ -10,14 +10,12 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author answer
  * 2018/4/12
  */
 public class ShiroDbRealm extends AuthorizingRealm {
-    @Autowired
     private UserValidateService userValidateService;
 
     public UserValidateService getUserValidateService() {
@@ -48,8 +46,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         if (user == null) {
             return null;
         }
-//        String password=user.getPassword();
-        String password = null;
+        String password = user.getPassword();
         return new SimpleAuthenticationInfo(user, password, this.getName());
 
     }
