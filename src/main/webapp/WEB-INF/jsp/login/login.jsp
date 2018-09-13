@@ -35,7 +35,7 @@
                 <input type="password" class="form-control" placeholder="Password" id="password">
                 <i class="fa fa-key"></i>
             </div>
-            <button type="submit" id="commit" class="btn btn-default btn-block">LOGIN</button>
+            <button type="button" id="commit" class="btn btn-default btn-block">LOGIN</button>
         </div>
     </form>
     <div class="footer-links row">

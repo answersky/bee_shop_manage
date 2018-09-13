@@ -27,25 +27,9 @@ var responsiveOptions = [
     }]
 ];
 
-new Chartist.Pie('#chartist-pie', data, options, responsiveOptions);
-
 /* ======================================================================
 Simple Line Chart
 ====================================================================== */
-new Chartist.Line('#chartist-line', {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    series: [
-        [12, 9, 7, 8, 5],
-        [2, 1, 3.5, 7, 3],
-        [1, 3, 4, 5, 6]
-    ]
-}, {
-    fullWidth: true,
-    chartPadding: {
-        right: 40
-    }
-
-});
 
 /* ======================================================================
 Line Scatter Diagram with Responsive Settings
@@ -87,8 +71,6 @@ var responsiveOptions = [
     }]
 ];
 
-new Chartist.Line('#chartist-line-scatter', data, options, responsiveOptions);
-
 
 /* ======================================================================
 Line Chart with Area
@@ -106,26 +88,7 @@ new Chartist.Line('#chartist-line-area', {
 /* ======================================================================
 Bi-polar Line Chart with Area Only
 ====================================================================== */
-new Chartist.Line('#chartist-line-bipolar', {
-    labels: [1, 2, 3, 4, 5, 6, 7, 8],
-    series: [
-        [1, 2, 3, 1, -2, 0, 1, 0],
-        [-2, -1, -2, -1, -2.5, -1, -2, -1],
-        [0, 0, 0, 1, 2, 2.5, 2, 1],
-        [2.5, 2, 1, 0.5, 1, 0.5, -1, -2.5]
-    ]
-}, {
-    high: 3,
-    low: -3,
-    showArea: true,
-    showLine: false,
-    showPoint: false,
-    fullWidth: true,
-    axisX: {
-        showLabel: false,
-        showGrid: false
-    }
-});
+
 /* ======================================================================
 Overlapping Bars
 ====================================================================== */
@@ -152,38 +115,5 @@ var responsiveOptions = [
     }]
 ];
 
-new Chartist.Bar('#chartist-bar-overlap', data, options, responsiveOptions);
-
-/* ======================================================================
-Horizontal Bar
-====================================================================== */
-new Chartist.Bar('#chartist-horizontal-bar', {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    series: [
-        [5, 4, 3, 7, 5, 10, 3],
-        [3, 2, 9, 5, 4, 6, 4]
-    ]
-}, {
-    seriesBarDistance: 10,
-    reverseData: true,
-    horizontalBars: true,
-    axisY: {
-        offset: 70
-    }
-});
-
-
-/* ======================================================================
-Gauge Chart
-====================================================================== */
-new Chartist.Pie('#chartist-gauge', {
-    series: [20, 10, 30, 40]
-}, {
-    donut: true,
-    donutWidth: 60,
-    startAngle: 270,
-    total: 200,
-    showLabel: false
-});
 
 

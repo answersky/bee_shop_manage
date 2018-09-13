@@ -11,12 +11,12 @@
 
         <property name="filterChainDefinitions">
             <value>
-                /login.jsp=anon
-                /jsp/success.jsp = authc
-                /jsp/fail.jsp = anon
 
                 /login = anon
                 /validate = anon
+
+                /* = authc
+
 
             </value>
         </property>
