@@ -8,14 +8,24 @@
         <!-- 装配 securityManager -->
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login"/>
-
+        <property name="filters">
+            <map>
+                <entry key="logout" value-ref="systemLogoutFilter"/>
+            </map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
-
+                /img/**=anon
+                /css/**=anon
+                /js/**=anon
+                /fonts/**=anon
+                /layui/**=anon
                 /login = anon
                 /validate = anon
 
-                /* = authc
+                /logout=logout
+
+                /** = authc
 
 
             </value>

@@ -24,7 +24,7 @@
                     src="${pageContext.request.contextPath}/img/profileimg.png" alt="img"><b>${user.name}</b><span
                     class="caret"></span></a>
             <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
-                <li><a href="#"><i class="fa falist fa-power-off"></i> Logout</a></li>
+                <li><a href="/logout"><i class="fa falist fa-power-off"></i> Logout</a></li>
             </ul>
         </li>
 

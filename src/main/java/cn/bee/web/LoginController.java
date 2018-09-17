@@ -10,6 +10,8 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,8 @@ import java.security.NoSuchAlgorithmException;
 public class LoginController {
     @Resource
     private UserValidateService userValidateService;
+
+    private Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping("/validate")
     @ResponseBody
@@ -70,4 +74,5 @@ public class LoginController {
         }
         return JSONUtil.object2String(responseResult);
     }
+
 }
