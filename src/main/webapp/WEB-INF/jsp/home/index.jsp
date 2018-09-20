@@ -1,21 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
-    <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive,"/>
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/bee.jpg" type="image/x-icon">
-    <title>Bee</title>
 
-    <!-- ========== Css Files ========== -->
-    <link href="${pageContext.request.contextPath}/css/root.css" rel="stylesheet">
-
-</head>
-<body>
 
 <%--头部--%>
 <%@include file="../common/head.jsp" %>
@@ -86,21 +70,8 @@
 </div>
 <!-- End Content -->
 
-<!-- ================================================
-jQuery Library
-================================================ -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 
-<!-- ================================================
-Bootstrap Core JavaScript File
-================================================ -->
-<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
-
-<!-- ================================================
-Plugin.js - Some Specific JS codes for Plugin Settings
-================================================ -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/plugins.js"></script>
-
+<%@include file="../common/js.jsp" %>
 <!-- ================================================
 Chartist
 ================================================ -->

@@ -8,7 +8,7 @@
         <li><a href="#"><span class="icon color7"><i class="fa fa-flask"></i></span>商品<span
                 class="caret"></span></a>
             <ul>
-                <li><a href="icons.html">商品列表</a></li>
+                <li><a href="/productList">商品列表</a></li>
                 <li><a href="tabs.html">Tabs</a></li>
                 <li><a href="buttons.html">Buttons</a></li>
                 <li><a href="panels.html">Panels</a></li>
