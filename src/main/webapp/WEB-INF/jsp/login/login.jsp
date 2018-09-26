@@ -44,7 +44,6 @@
 
 
 <%@include file="../common/js.jsp" %>
-<script src="${pageContext.request.contextPath}/js/sweet-alert/sweet-alert.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/kode-alert/main.js"></script>
 <script src="${pageContext.request.contextPath}/js/bee/login/login.js"></script>
 

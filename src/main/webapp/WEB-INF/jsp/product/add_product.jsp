@@ -22,14 +22,18 @@
                         <form class="form-horizontal">
 
                             <div class="form-group">
-                                <label for="productName" class="col-sm-2 control-label form-label">商品名</label>
+                                <label for="productName" class="col-sm-2 control-label form-label">
+                                    <span style="color:red;">*</span>
+                                    商品名</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="productName">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label form-label">商品类型</label>
+                                <label class="col-sm-2 control-label form-label">
+                                    <span style="color:red;">*</span>
+                                    商品类型</label>
                                 <div class="col-sm-8">
                                     <select class="selectpicker">
                                         <c:forEach items="${types}" var="productType">
@@ -40,14 +44,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="price" class="col-sm-2 control-label form-label">价格</label>
+                                <label for="price" class="col-sm-2 control-label form-label">
+                                    <span style="color:red;">*</span>
+                                    价格</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="price">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="inventory" class="col-sm-2 control-label form-label">库存</label>
+                                <label for="inventory" class="col-sm-2 control-label form-label">
+                                    <span style="color:red;">*</span>
+                                    库存</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="inventory">
                                 </div>
@@ -68,7 +76,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="unit" class="col-sm-2 control-label form-label">单位</label>
+                                <label for="unit" class="col-sm-2 control-label form-label">
+                                    单位</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="unit">
                                 </div>
@@ -117,16 +126,26 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="produceTime" class="col-sm-2 control-label form-label">生产日期</label>
+                                <label for="produceTime" class="col-sm-2 control-label form-label">
+                                    <span style="color:red;">*</span>
+                                    生产日期</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="produceTime">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" id="produceTime" class="form-control"/>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="expireTime" class="col-sm-2 control-label form-label">过期日期</label>
+                                <label for="expireTime" class="col-sm-2 control-label form-label">
+                                    <span style="color:red;">*</span>
+                                    过期日期</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="expireTime">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" id="expireTime" class="form-control"/>
+                                    </div>
                                 </div>
                             </div>
 
@@ -137,9 +156,29 @@
                                 </div>
                             </div>
 
+                            <%--商品图片--%>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label form-label">商品图片</label>
+                                <hr style="border-top: 1px solid red;">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="originPlace" class="col-sm-2 control-label form-label">主图</label>
+                                <div class="col-sm-8">
+                                    <input type="file" id="mainUrl" style="display: inline;">
+                                    <button type="button" class="btn btn-default" id="savePic">上传</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label form-label">主图展示</label>
+                                <div class="col-sm-8" id="mainPic">
+
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default">提交</button>
+                                    <button type="button" class="btn btn-default" id="saveProduct">提交</button>
                                 </div>
                             </div>
                         </form>
@@ -152,16 +191,7 @@
         </div>
     </div>
 
-    <!-- Start Footer -->
-    <div class="row footer">
-        <div class="col-md-6 text-left">
-            Copyright © 2015 <a href="http://www.17sucai.com/" target="_blank">17素材</a> All rights reserved.
-        </div>
-        <div class="col-md-6 text-right">
-            Design and Developed by <a href="http://www.17sucai.com/" target="_blank">17素材</a>
-        </div>
-    </div>
-    <!-- End Footer -->
+    <%@include file="../common/footer.jsp" %>
 
 </div>
 <%@include file="../common/js.jsp" %>
@@ -170,5 +200,8 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/moment/moment.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/js/date-range-picker/daterangepicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bee/product/product_add.js"></script>
 </body>
 </html>

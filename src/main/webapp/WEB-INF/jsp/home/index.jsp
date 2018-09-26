@@ -55,16 +55,7 @@
     </div>
     <!-- END CONTAINER -->
 
-    <!-- Start Footer -->
-    <div class="row footer">
-        <div class="col-md-6 text-left">
-            Copyright © 2015 <a href="http://www.17sucai.com/" target="_blank">17素材</a> All rights reserved.
-        </div>
-        <div class="col-md-6 text-right">
-            Design and Developed by <a href="http://www.17sucai.com/" target="_blank">17素材</a>
-        </div>
-    </div>
-    <!-- End Footer -->
+    <%@include file="../common/footer.jsp" %>
 
 
 </div>
