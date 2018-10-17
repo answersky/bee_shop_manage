@@ -1,10 +1,15 @@
 package cn.bee.web;
 
+import cn.bee.User;
 import cn.bee.enumClass.ProductType;
 import cn.bee.model.Product;
+import cn.bee.model.ProductAttribute;
+import cn.bee.model.ProductPic;
 import cn.bee.service.IProductService;
 import cn.bee.utils.JSONUtil;
 import cn.bee.utils.Properties;
+import cn.bee.utils.ResponseResult;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -44,17 +48,11 @@ public class ProductController {
     public String findProductList() {
         Map<String, Object> result = new LinkedHashMap<>();
         List<Product> products = new ArrayList<>();
-        Product product = new Product();
-        product.setProductCode("aaabbbccc");
-        product.setProductName("北京方便面");
-        product.setProductType(String.valueOf(ProductType.FOOD));
-        product.setPic("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1537411867&di=e401d45f7a8a7944579b9e193595f0b6&src=http://upload.00007.com/upload/images/3870901bf29908a1.jpg");
-        product.setPrice(new BigDecimal(1.0));
-        product.setInventory(200);
-        product.setSort(1);
-        product.setOperator("admin");
-        product.setCreateTime(new Date());
-        products.add(product);
+        Map<String, Object> param = new LinkedHashMap<>();
+        Map<String, Object> map = productService.queryAll(param);
+        if ("success".equals(map.get("status"))) {
+            products = (List<Product>) map.get("data");
+        }
         result.put("data", products);
         return JSONUtil.object2String(result);
     }
@@ -130,6 +128,41 @@ public class ProductController {
             e.printStackTrace();
         }
         return properties.getValue(key);
+    }
+
+    @ResponseBody
+    @RequestMapping("/product/createProduct")
+    public String createProduct(HttpServletRequest request) {
+        ResponseResult result = new ResponseResult();
+        try {
+            User user = (User) SecurityUtils.getSubject().getPrincipal();
+            String username = user.getName();
+            Date createTime = new Date();
+            String productCode = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10);
+            String productJson = request.getParameter("product");
+            Product product = (Product) JSONUtil.jsonStr2Object(productJson, Product.class);
+            product.setProductCode(productCode);
+            product.setOperator(username);
+            product.setCreateTime(createTime);
+            log.info("商品信息：" + product);
+            String productAttrJson = request.getParameter("productAttr");
+            ProductAttribute productAttribute = (ProductAttribute) JSONUtil.jsonStr2Object(productAttrJson, ProductAttribute.class);
+            productAttribute.setCreateTime(createTime);
+            log.info("商品属性信息：" + productAttribute);
+            String productPicJson = request.getParameter("productPic");
+            ProductPic productPic = (ProductPic) JSONUtil.jsonStr2Object(productPicJson, ProductPic.class);
+            log.info("商品图片信息：" + productPic);
+            product.setProductAttribute(productAttribute);
+            product.setProductPic(productPic);
+            productService.addProduct(product);
+            result.setStatus("200");
+            result.setMessage("商品创建成功");
+        } catch (Exception e) {
+            result.setStatus("505");
+            result.setMessage("商品创建失败");
+            e.printStackTrace();
+        }
+        return JSONUtil.object2String(result);
     }
 
 }

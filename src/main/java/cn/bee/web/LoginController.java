@@ -37,6 +37,7 @@ public class LoginController {
     public String login(Model model, String username, String password) {
         ResponseResult responseResult = new ResponseResult();
         User user = userValidateService.findByUsername(username);
+        log.info("用户：" + user);
         if (user == null) {
             responseResult.setMessage("用户不存在");
             responseResult.setStatus("400");
