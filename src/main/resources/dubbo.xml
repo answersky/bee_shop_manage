@@ -18,6 +18,8 @@
 
     <dubbo:reference id="userService" interface="cn.bee.service.UserService" check="false"/>
     <dubbo:reference id="productService" interface="cn.bee.service.IProductService" check="false"/>
+    <dubbo:reference id="productOperateLogService" interface="cn.bee.service.log.IProductOperateLogService"
+                     check="false"/>
 
 
 </beans>

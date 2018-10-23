@@ -6,6 +6,7 @@ import cn.bee.model.Product;
 import cn.bee.model.ProductAttribute;
 import cn.bee.model.ProductPic;
 import cn.bee.service.IProductService;
+import cn.bee.service.LogRecordService;
 import cn.bee.utils.JSONUtil;
 import cn.bee.utils.Properties;
 import cn.bee.utils.ResponseResult;
@@ -34,6 +35,8 @@ import java.util.*;
 public class ProductController {
     @Resource
     private IProductService productService;
+    @Resource
+    private LogRecordService logRecordService;
 
     private Logger log = LoggerFactory.getLogger(ProductController.class);
 
@@ -157,6 +160,10 @@ public class ProductController {
             productService.addProduct(product);
             result.setStatus("200");
             result.setMessage("商品创建成功");
+
+            //记录商品操作日志
+            String remark = "账户：" + username + " 新建商品productCode:" + productCode + " 状态：0";
+            logRecordService.saveProductOperateLog(username, productCode, remark);
         } catch (Exception e) {
             result.setStatus("505");
             result.setMessage("商品创建失败");
@@ -164,5 +171,6 @@ public class ProductController {
         }
         return JSONUtil.object2String(result);
     }
+
 
 }
